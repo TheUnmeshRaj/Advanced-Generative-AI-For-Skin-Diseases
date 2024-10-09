@@ -1,0 +1,41 @@
+/* TextBox.css */
+
+.button-align {
+  margin-top: 1rem; /* Add margin above the button */
+  padding: 0.5rem 1rem; /* Optional: Add padding for better appearance */
+  background-color: #007bff; /* Button background color */
+  color: white; /* Button text color */
+  border: none; /* Remove border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Change cursor on hover */
+  font-size: 16px; /* Font size */
+}
+
+.button-align:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+  }
+  
+  .textbox-container {
+    margin-bottom: 1rem;
+  }
+  
+  .textbox-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .textbox-input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 300px; /* You can adjust the width */
+    font-size: 16px;
+  }
+  
