@@ -1,5 +1,7 @@
-import { initializeApp } from "firebase/app";   // Correct path for initializeApp
-import { getAnalytics } from "firebase/analytics";  // Correct path for getAnalytics
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";  // For Firestore Database
+import { getAuth } from "firebase/auth";  // For Authentication
+import { getAnalytics } from "firebase/analytics";  // For Analytics (optional)
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -16,7 +18,17 @@ const firebaseConfig = {
   appId: "1:729460224991:web:7013988b0451cf30fdca6a",
   measurementId: "G-WZNB2F4BL5"
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Initialize Firestore (if you are using it)
+const db = getFirestore(app);
+
+// Initialize Firebase Auth (if you are using it)
+const auth = getAuth(app);
+
+// Initialize Firebase Analytics (optional)
 const analytics = getAnalytics(app);
+
+// Export the Firebase services that you need in other files
+export { db, auth, analytics };
