@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './TextBoxStyle.css';  // Import your CSS file
-import db from '../DataBase/FireBaseSetup.json'; // Import Firestore instance
+import './TextBoxStyle.css';
+import { db } from '../firebase/firebase'; // Adjust the path to your firebase.js file
 import { collection, addDoc } from 'firebase/firestore';
 
 interface TextBoxProps {
@@ -21,15 +21,23 @@ const TextBox: React.FC<TextBoxProps> = ({ label, placeholder, value, onChange }
   };
 
   const handleSearch = async () => {
+    console.log("Search button clicked"); // Debugging statement
+
+    if (!inputValue.trim()) {
+      console.warn('Input is empty. Please enter a valid search term.');
+      return; // Prevent saving empty strings
+    }
+
     try {
       // Store search result in Firestore
       await addDoc(collection(db, 'searchResults'), {
-        searchTerm: inputValue,
+        searchTerm: inputValue.trim(),  // Store the trimmed input value
         timestamp: new Date(),
       });
       console.log('Search result saved:', inputValue);
-      // Optionally reset the input after saving
-      setInputValue('');
+
+      // Clear the input after saving
+      setInputValue(''); 
     } catch (error) {
       console.error('Error adding document: ', error);
     }
