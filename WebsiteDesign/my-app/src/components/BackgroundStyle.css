@@ -1,8 +1,29 @@
-.background-style{
+.background-style {
     display: flex;
-    background-image : url('61802.jpg');  
+    background-image: url('61802.jpg');  
     padding-top: 20px;
     padding-bottom: 40px;
+    padding-right: 140px;
     align-items: center;
     flex-direction: column;
+    position: relative; /* Added for absolute positioning of the robot */
+}
+
+.textBox-align {
+    margin-top: -50px; /* Adjust as needed */
+}
+
+.robot-container {
+    position: absolute; /* Position the container absolutely */
+    bottom: 20px; /* Distance from the bottom */
+    right: 20px; /* Distance from the right */
+    overflow: hidden; /* This prevents overflow of the image */
+}
+
+.robot-image {
+    width: 400px; /* Increased width to make the robot bigger */
+    height: auto; /* Maintain aspect ratio */
+    opacity: 1; /* Fully opaque */
+    mix-blend-mode: normal; /* Normal blend mode, no blending */
+    filter: none; /* No blur effect */
 }

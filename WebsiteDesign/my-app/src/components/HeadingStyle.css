@@ -1,13 +1,12 @@
 .heading-align {
     margin-top: 100px;
     text-align: center;
-    font-size: x-large;
-    font-family: serif;
+    font-size: 70px;
+    font-family: 'Open-sans' , sans-serif ;
     font-weight: bold;
     color: solid black;
-    border: 1px solid black;
     padding: 5px 20px;
     border-radius: 10px; 
     display: inline-block; 
-    width: auto;
+    width: 770px;
 }
