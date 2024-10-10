@@ -1,3 +1,15 @@
 import React from 'react';
+import './components/BackgroundStyle.css';
 import TextBox from './components/ChatSpace';
-export default TextBox;
+import HeaderFunc from  './components/HeadingFile';
+import TextBoxFunc from './components/ResultBox';
+const App = () => {
+    return (
+        <div className ='background-style'>
+        <HeaderFunc title ="Chat Bot" />
+        <TextBox/>
+        <TextBoxFunc res=""/>
+         </div>
+    );
+} 
+export default App ;

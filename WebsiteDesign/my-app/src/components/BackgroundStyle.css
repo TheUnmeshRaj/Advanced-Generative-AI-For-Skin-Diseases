@@ -1,0 +1,8 @@
+.background-style{
+    display: flex;
+    background-color : black ;  
+    padding-top: 20px;
+    padding-bottom: 40px;
+    align-items: center;
+    flex-direction: column;
+}
