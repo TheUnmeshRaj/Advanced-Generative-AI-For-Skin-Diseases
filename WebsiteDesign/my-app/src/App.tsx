@@ -6,7 +6,7 @@ import TextBoxFunc from './components/ResultBox';
 const App = () => {
     return (
         <div className ='background-style'>
-        <HeaderFunc title ="Chat Bot" />
+        <HeaderFunc title =" Skin Disease Chat Bot" />
         <TextBox/>
         <TextBoxFunc res=""/>
          </div>

@@ -6,7 +6,7 @@ type ResultProp = {
 const TextBoxFunc: React.FC<ResultProp> = ({ res }) => {
     return (
         <div className="res-space">
-            <p>{res || "No result available Yet ."}</p>
+            <p>{res || "No result available Yet "}</p>
         </div>
     );
 };
