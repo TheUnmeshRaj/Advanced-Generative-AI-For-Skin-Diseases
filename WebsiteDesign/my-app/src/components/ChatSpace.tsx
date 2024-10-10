@@ -11,7 +11,8 @@ interface TextBoxProps {
 }
 
 const TextBox: React.FC<TextBoxProps> = ({ label, placeholder, value, onChange }) => {
-  const [inputValue, setInputValue] = useState(value || 'Enter your search query here');
+  const [inputValue, setInputValue] = useState(value || '');
+  const [searchHistory, setSearchHistory] = useState<string[]>([]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -21,7 +22,7 @@ const TextBox: React.FC<TextBoxProps> = ({ label, placeholder, value, onChange }
   };
 
   const handleSearch = async () => {
-    console.log("Search button clicked"); // Debugging statement
+    console.log("Search button clicked");
 
     if (!inputValue.trim()) {
       console.warn('Input is empty. Please enter a valid search term.');
@@ -29,15 +30,18 @@ const TextBox: React.FC<TextBoxProps> = ({ label, placeholder, value, onChange }
     }
 
     try {
-      // Store search result in Firestore
+      // Store the search result in Firestore
       await addDoc(collection(db, 'searchResults'), {
-        searchTerm: inputValue.trim(),  // Store the trimmed input value
+        searchTerm: inputValue.trim(),
         timestamp: new Date(),
       });
       console.log('Search result saved:', inputValue);
 
+      // Update the local search history
+      setSearchHistory((prevHistory) => [...prevHistory, inputValue]);
+
       // Clear the input after saving
-      setInputValue(''); 
+      setInputValue('');
     } catch (error) {
       console.error('Error adding document: ', error);
     }
@@ -47,11 +51,11 @@ const TextBox: React.FC<TextBoxProps> = ({ label, placeholder, value, onChange }
     <div className="center-container">
       <div className="textbox-container">
         {label && <label className="textbox-label">{label}</label>}
-        <input 
-          type="text" 
-          placeholder={placeholder} 
-          value={inputValue} 
-          onChange={handleChange} 
+        <input
+          type="text"
+          placeholder={placeholder || 'Enter your search query here'}
+          value={inputValue}
+          onChange={handleChange}
           className="textbox-input"
         />
         <button className="button-align" onClick={handleSearch}>
@@ -61,5 +65,4 @@ const TextBox: React.FC<TextBoxProps> = ({ label, placeholder, value, onChange }
     </div>
   );
 };
-
-export default TextBox; 
+export default TextBox ; 

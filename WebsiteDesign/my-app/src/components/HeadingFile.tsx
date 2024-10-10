@@ -6,7 +6,7 @@ type HeaderProps={
 const HeaderFunc : React.FC<HeaderProps> = ({title})=>{
     return (
         <header className = "heading-align">
-            MEDICAL CHAT BOT 
+            {title}
         </header>
     );
 };
