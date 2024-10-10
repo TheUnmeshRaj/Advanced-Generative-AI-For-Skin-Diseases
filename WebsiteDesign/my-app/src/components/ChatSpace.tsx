@@ -11,7 +11,7 @@ interface TextBoxProps {
 }
 
 const TextBox: React.FC<TextBoxProps> = ({ label, placeholder, value, onChange }) => {
-  const [inputValue, setInputValue] = useState(value || '');
+  const [inputValue, setInputValue] = useState(value || 'Enter your search query here');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -62,4 +62,4 @@ const TextBox: React.FC<TextBoxProps> = ({ label, placeholder, value, onChange }
   );
 };
 
-export default TextBox;
+export default TextBox; 
