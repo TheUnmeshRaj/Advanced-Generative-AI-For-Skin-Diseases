@@ -7,11 +7,15 @@ from transformers import (
     TrainingArguments,
 )
 
-# Load the dataset
-df = pd.read_parquet("hf://datasets/brucewayne0459/Skin_diseases_and_care/data/train-00000-of-00001.parquet")
+# Load the dataset (replace with actual file location)
+df = pd.read_parquet("hf://datasets/brucewayne0459/Skin_diseases_and_care/data/train-00000-of-00001.parquet")  # Fix the dataset loading issue here
 
-# Preview the dataset (assuming it has 'Topic' and 'Information' columns)
+# Preview the dataset to ensure it has the correct columns
 print(df.head())
+
+# Make sure your dataset has columns 'Topic' and 'Information'
+# If not, rename them accordingly:
+# df = df.rename(columns={'your_input_column': 'Topic', 'your_output_column': 'Information'})
 
 # Convert the pandas DataFrame to Hugging Face Dataset
 dataset = Dataset.from_pandas(df)
@@ -24,8 +28,8 @@ model = T5ForConditionalGeneration.from_pretrained('t5-small')
 def tokenize_function(examples):
     # Tokenize both input and output text
     model_inputs = tokenizer(examples['Topic'], max_length=128, truncation=True, padding='max_length')
-    with tokenizer.as_target_tokenizer():
-        labels = tokenizer(examples['Information'], max_length=128, truncation=True, padding='max_length')
+    # Tokenize the target (output text)
+    labels = tokenizer(examples['Information'], max_length=128, truncation=True, padding='max_length')
     model_inputs['labels'] = labels['input_ids']
     return model_inputs
 
@@ -75,8 +79,6 @@ def generate_text(Topic):
     return tokenizer.decode(outputs[0], skip_special_tokens=True)
 
 # Example test case (replace this with your input)
-c = "yes"
-while "y" in c:
-    Information = generate_text(input("give input : "))
-    print(f"Generated Output: {Information}")
-    c = input("do you want to continue : ")
+Topic = "Describe the care needed for acne."
+Information = generate_text(Topic)
+print(f"Generated Output: {Information}")
